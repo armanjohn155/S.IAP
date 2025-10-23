@@ -1,0 +1,139 @@
+
+
+    /* Basic reset */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      background: #f0f2f5;
+    }
+    /* Navbar */
+    nav {
+      background-color: #3f51b5;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    /* Chat container */
+    .chat-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      max-width: 600px;
+      margin: 1rem auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    /* Messages area */
+    .messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+    /* Message bubbles */
+    .message {
+      max-width: 70%;
+      margin-bottom: 1rem;
+      padding: 0.75rem 1rem;
+      border-radius: 20px;
+      clear: both;
+      font-size: 1rem;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+    /* User messages align right */
+    .message.user {
+      background-color: #3f51b5;
+      color: white;
+      float: right;
+      border-bottom-right-radius: 0;
+    }
+    /* Auto replies align left */
+    .message.reply {
+      background-color: #e0e0e0;
+      color: #333;
+      float: left;
+      border-bottom-left-radius: 0;
+    }
+    /* Input area */
+    .input-area {
+      display: flex;
+      border-top: 1px solid #ddd;
+      padding: 0.5rem 1rem;
+      background: #fafafa;
+    }
+    .input-area input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .input-area input:focus {
+      border-color: #3f51b5;
+    }
+    .input-area button {
+      margin-left: 0.75rem;
+      background-color: #3f51b5;
+      border: none;
+      color: white;
+      padding: 0 1.5rem;
+      border-radius: 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .input-area button:hover {
+      background-color: #303f9f;
+    }
+    /* Footer */
+    footer {
+      background-color: #3f51b5;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 0.9rem;
+    }
+    #messages {
+  max-height: 400px; /* or whatever fits your layout */
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.message {
+  max-width: 70%;
+  padding: 10px 15px;
+  border-radius: 15px;
+  word-wrap: break-word;
+}
+
+/* User messages on the right */
+.user-message {
+  align-self: flex-end;
+  background-color: #4a0033;
+  color: white;
+  text-align: right;
+}
+
+/* Bot messages on the left */
+.bot-message {
+  align-self: flex-start;
+  background-color: #eee;
+  color: #333;
+  text-align: left;
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Mitch's Desserts and Pastries</title>
+  <link rel="stylesheet" href="../assets/styles/style.css">
+  <link rel="stylesheet" href="../assets/styles/navbar.css">
+  <link rel="stylesheet" href="../assets/styles/contacts.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav><a href="index.html"><img src="../assets/image/logo.png"></a>
+  </nav>
+
+  <div class="chat-container">
+    <div class="messages" id="messages"></div>
+    <form id="chat-form" class="input-area">
+      <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off" required />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <footer>
+    &copy; 2025 Mitch's Cake &. All rights reserved.
+  </footer>
+
+   <script>
+    const form = document.getElementById('chat-form');
+    const input = document.getElementById('user-input');
+    const messages = document.getElementById('messages');
+
+    // Cake business-specific autoreply keywords and responses
+    const replies = [
+      {
+        keywords: ['menu', 'order list', 'products'],
+        reply:'You can place an order on our <a href="../pages/products.html" target="_blank" style="color:#4a0033; text-decoration: underline;">Order Page</a>.'
+      },
+      {
+        keywords: ['hello', 'hi', 'hey'],
+        reply: 'Hello! Welcome to Sweet Delights. How can I help you with your cake today?'
+      },
+      {
+        keywords: ['offers', 'services', 'service'],
+        reply: 'You can view our services<a href="../pages/services.html" target="_blank" style="color:#4a0033; text-decoration: underline;">here</a>.'
+      },
+      {
+        keywords: ['types of cakes do you offer', 'types of cakes', 'cakes do you offer'],
+        reply: 'Our cakes start at P500-650 for a small cake. Custom sizes and decorations may affect the price.'
+      },
+      {
+        keywords: ['Can I customize my cake design','customize my cake design', 'customize cake design','customize my cake', 'custom cake', 'design my cake'],
+        reply: 'You can place an order directly on our website or call us at (555) 123-4567.'
+      },
+      {
+        keywords: ['What sizes of cakes do you provide?', 'sizes of cakes', 'cake sizes'],
+        reply: 'We deliver within the city for a small fee. Free pickup is available at our shop.'
+      },
+      {
+        keywords: ['Do you make cakes for weddings/birthdays/corporate events?', 'for weddings', 'for birthdays', 'for corporate events'],
+        reply: 'We create custom cakes for all occasions! Tell us your ideas and we’ll bring them to life.'
+      },
+      {
+        keywords: ['What payment methods do you accept?', 'hours', 'time'],
+        reply: 'We are open from 9 AM to 8 PM, Monday to Saturday.'
+      },
+      {
+        keywords: ['thank', 'thanks'],
+        reply: 'You’re very welcome! Sweet Delights is here whenever you need a treat.'
+      },
+      {
+        keywords: ['Do you offer delivery? If yes, what areas do you cover?', 'you offer delivery?', 'offer delivery?'],
+        reply: 'Thanks for chatting! Have a sweet day 🍰💕'
+      },
+      {
+        keywords: ['bye', 'goodbye', 'see you'],
+        reply: 'Thanks for chatting! Have a sweet day 🍰💕'
+      }
+    ];
+
+    function getReply(message) {
+      const msg = message.toLowerCase();
+      for (const item of replies) {
+        for (const kw of item.keywords) {
+          if (msg.includes(kw)) {
+            return item.reply;
+          }
+        }
+      }
+      return "Sorry, I didn't quite get that. Could you please ask about our cakes, orders, or delivery?";
+    }
+
+    function appendMessage(text, sender) {
+  const div = document.createElement('div');
+  div.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
+  div.innerHTML = text;  // <-- use innerHTML here to allow links
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const userMsg = input.value.trim();
+      if (!userMsg) return;
+
+      appendMessage(userMsg, 'user');
+      input.value = '';
+
+      setTimeout(() => {
+        const botReply = getReply(userMsg);
+        appendMessage(botReply, 'bot');
+      }, 700);
+    });
+  </script>
+</body>
+
+</html>
